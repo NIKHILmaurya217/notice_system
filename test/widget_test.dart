@@ -11,20 +11,27 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:notice_system/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Notice system smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const NoticeBoardApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the app title is present.
+    expect(find.text('College Notice System'), findsWidgets);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Verify that the initial notices are present.
+    expect(find.text('Welcome to the Flutter Peer-to-Peer Learning Class!'), findsOneWidget);
+
+    // verify that the hint text for the text field is present.
+    expect(find.text('Enter a new notice...'), findsOneWidget);
+
+    // Enter a new notice and tap the post button.
+    await tester.enterText(find.byType(TextField), 'This is a test notice');
+    await tester.tap(find.text('Post Notice'));
+    
+    // trigger a frame to allow the UI to update.
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // verify that the new notice was added to the list.
+    expect(find.text('This is a test notice'), findsOneWidget);
   });
 }
