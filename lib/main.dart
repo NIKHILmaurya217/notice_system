@@ -30,7 +30,7 @@ class NoticeHomePage extends StatefulWidget {
 class _NoticeHomePageState extends State<NoticeHomePage> {
   final TextEditingController _noticeController = TextEditingController();
   final List<String> _notices = [
-    "Welcome to the Peer-to-Peer Learning Class!",
+    "Welcome to the Flutter Peer-to-Peer Learning Class!",
     "Flutter Workshop scheduled for tomorrow at 4:30 PM.",
     "Please submit your assignments by 28 March.",
   ];
